@@ -1,0 +1,16 @@
+{
+  "users": {
+    "$userId": {
+      "name": "string",
+      "avatar": "string",
+      "last": "timestamp",
+      "online": "bool",
+      "authed": "bool",
+      "guest": "bool",
+      "version": "string",
+      "connections": {
+        "$connectionId": true
+      }
+    }
+  }
+}

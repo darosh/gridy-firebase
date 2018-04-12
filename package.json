@@ -1,0 +1,16 @@
+{
+  "name": "gridy-firebase",
+  "version": "0.0.0",
+  "description": "Firebase backend for gridy-games",
+  "main": "index.js",
+  "repository": "https://github.com/darosh/gridy-firebase.git",
+  "author": "Jan Forst <ensonador@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "config:set": "node ./admin/config-set"
+  },
+  "dependencies": {
+    "firebase-tools": "^3.18.2"
+  }
+}
