@@ -3,7 +3,6 @@ const admin = require('firebase-admin')
 const secureCompare = require('secure-compare')
 const cors = require('cors')
 
-
 const USER_LIMIT = 100
 
 admin.initializeApp()
@@ -11,6 +10,7 @@ admin.initializeApp()
 const corsHandler = cors({ origin: true });
 const db = admin.database()
 const usersRef = db.ref('users').orderByChild('online').equalTo(true)
+const serverStarted = (new Date()).toISOString()
 
 let onlineUsers = []
 let onlineCount = 0
@@ -60,7 +60,7 @@ exports.onlineUsers = functions.https.onRequest((req, res) => {
   corsHandler(req, res, () => {
     usersPromise.then(() => {
       onlineUsersRequestCount++
-      res.json({ data: { onlineCount, connectionReuseCount, onlineUsersRequestCount, onlineUsers } })
+      res.json({ data: { serverStarted, onlineCount, connectionReuseCount, onlineUsersRequestCount, onlineUsers } })
     })
   })
 })
