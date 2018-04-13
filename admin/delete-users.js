@@ -1,7 +1,7 @@
 var admin = require('firebase-admin')
 
 var serviceAccount = require('../.admin.json')
-const { databaseURL } = require('../../gridy/.firebase.json')
+const { databaseURL } = require('../../gridy-games/.firebase.json')
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -10,10 +10,10 @@ admin.initializeApp({
 
 function listAllUsers (nextPageToken) {
   // List batch of users, 1000 at a time.
-  admin.auth().listUsers(1000, nextPageToken)
+  admin.auth().listUsers(5, nextPageToken)
     .then(function (listUsersResult) {
       listUsersResult.users.forEach(function (userRecord) {
-        console.log('user', userRecord.toJSON())
+        // console.log('user', userRecord.toJSON())
 
         admin.auth().deleteUser(userRecord.uid)
           .then(function () {
@@ -25,7 +25,11 @@ function listAllUsers (nextPageToken) {
       })
       if (listUsersResult.pageToken) {
         // List next batch of users.
-        listAllUsers(listUsersResult.pageToken)
+        setTimeout(() => {
+          listAllUsers(listUsersResult.pageToken)
+        }, 5000)
+      } else {
+        process.exit()
       }
     })
     .catch(function (error) {
