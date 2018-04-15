@@ -8,7 +8,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "config:set": "node ./admin/config-set"
+    "config:set": "node ./admin/config-set",
+    "delete:users": "node ./admin/delete-users"
   },
   "dependencies": {
     "firebase-admin": "^5.12.0",

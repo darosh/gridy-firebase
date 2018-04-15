@@ -9,7 +9,7 @@ admin.initializeApp()
 
 const corsHandler = cors({ origin: true });
 const db = admin.database()
-const usersRef = db.ref('users').orderByChild('online').equalTo(true)
+const usersRef = db.ref('users').orderByChild('online').startAt(1)
 const serverStarted = (new Date()).toISOString()
 
 let onlineUsers = []
